@@ -35,6 +35,11 @@ public sealed class IntTweenProperty : AbstractTweenProperty, IGenericProperty
 
 	public override void prepareForUse()
 	{
+		if (_ownerTween.target == null)
+		{
+			return;
+		}
+
 		// retrieve the getter
 		var getter = GoTweenUtils.getterForProperty<Func<int>>( _ownerTween.target, propertyName );
 		

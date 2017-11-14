@@ -42,7 +42,11 @@ public sealed class PositionTweenProperty : AbstractVector3TweenProperty
 	public override void prepareForUse()
 	{
 		_target = _ownerTween.target as Transform;
-		
+		if (_ownerTween.target == null)
+		{
+			return;
+		}
+
 		_endValue = _originalEndValue;
 		
 		// if this is a from tween we need to swap the start and end values

@@ -28,6 +28,11 @@ public sealed class ColorTweenProperty : AbstractMaterialColorTweenProperty, IGe
 	
 	public override void prepareForUse()
 	{
+		if (_ownerTween.target == null)
+		{
+			return;
+		}
+
 		// retrieve the getter
 		var getter = GoTweenUtils.getterForProperty<Func<Color>>( _ownerTween.target, propertyName );
 		

@@ -11,6 +11,11 @@ public class Vector3YTweenProperty : Vector3XTweenProperty
 	
 	public override void prepareForUse()
 	{
+		if (_ownerTween.target == null)
+		{
+			return;
+		}
+
 		// retrieve the getter
 		_getter = GoTweenUtils.getterForProperty<Func<Vector3>>( _ownerTween.target, propertyName );
 		

@@ -41,7 +41,11 @@ public sealed class EulerAnglesTweenProperty : AbstractVector3TweenProperty
 	public override void prepareForUse()
 	{
 		_target = _ownerTween.target as Transform;
-		
+		if (_ownerTween.target == null)
+		{
+			return;
+		}
+
 		_endValue = _originalEndValue;
 		
 		// swap the start and end if this is a from tween

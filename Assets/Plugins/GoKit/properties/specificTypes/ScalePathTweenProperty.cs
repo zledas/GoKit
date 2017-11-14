@@ -45,7 +45,11 @@ public sealed class ScalePathTweenProperty : AbstractTweenProperty
 	public override void prepareForUse()
 	{
 		_target = _ownerTween.target as Transform;
-		
+		if (_ownerTween.target == null)
+		{
+			return;
+		}
+
 		// if this is a from tween first reverse the path then build it
 		if( _ownerTween.isFrom )
 			_path.reverseNodes();

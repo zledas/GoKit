@@ -34,6 +34,11 @@ public sealed class FloatTweenProperty : AbstractTweenProperty, IGenericProperty
 	
 	public override void prepareForUse()
 	{
+		if (_ownerTween.target == null)
+		{
+			return;
+		}
+
 		// retrieve the getter
 		var getter = GoTweenUtils.getterForProperty<Func<float>>( _ownerTween.target, propertyName );
 		

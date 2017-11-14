@@ -36,6 +36,11 @@ public class Vector3XTweenProperty : AbstractVector3TweenProperty, IGenericPrope
 
 	public override void prepareForUse()
 	{
+		if (_ownerTween.target == null)
+		{
+			return;
+		}
+
 		// retrieve the getter
 		_getter = GoTweenUtils.getterForProperty<Func<Vector3>>( _ownerTween.target, propertyName );
 		

@@ -62,6 +62,11 @@ public sealed class ShakeTweenProperty : AbstractTweenProperty
 	public override void prepareForUse()
 	{
 		_target = _ownerTween.target as Transform;
+		if (_ownerTween.target == null)
+		{
+			return;
+		}
+
 		_frameCount = 0;
 
 		// store off any properties we will be shaking

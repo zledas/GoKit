@@ -28,6 +28,11 @@ public sealed class Vector3TweenProperty : AbstractVector3TweenProperty, IGeneri
 	
 	public override void prepareForUse()
 	{
+		if (_ownerTween.target == null)
+		{
+			return;
+		}
+
 		// retrieve the getter
 		var getter = GoTweenUtils.getterForProperty<Func<Vector3>>( _ownerTween.target, propertyName );
 		

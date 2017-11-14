@@ -24,7 +24,11 @@ public sealed class AnchoredPosition3DTweenProperty : AbstractTweenProperty
 	public override void prepareForUse()
 	{
 		_target = _ownerTween.target as RectTransform;
-		
+		if (_ownerTween.target == null)
+		{
+			return;
+		}
+
 		_endValue = _originalEndValue;
 		
 		if( _ownerTween.isFrom )

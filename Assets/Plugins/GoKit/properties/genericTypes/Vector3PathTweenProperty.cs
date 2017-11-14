@@ -32,6 +32,11 @@ public sealed class Vector3PathTweenProperty : AbstractTweenProperty, IGenericPr
 	
 	public override void prepareForUse()
 	{
+		if (_ownerTween.target == null)
+		{
+			return;
+		}
+
 		// if this is a from tween first reverse the path then build it. we unreverse in case we were copied
 		if( _ownerTween.isFrom )
 			_path.reverseNodes();
