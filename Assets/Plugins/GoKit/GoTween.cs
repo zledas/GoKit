@@ -141,7 +141,7 @@ public sealed class GoTween : AbstractGoTween
 			if( target == null || target.Equals(null) )
 			{
 				// if the target doesn't pass validation
-				Debug.LogWarning( "target validation failed. destroying the tween to avoid errors. Target type: " + this.targetType );
+				Debug.Log( "target validation failed. destroying the tween to avoid errors. Target type: " + this.targetType );
 				autoRemoveOnComplete = true;
 				return true;
 			}
