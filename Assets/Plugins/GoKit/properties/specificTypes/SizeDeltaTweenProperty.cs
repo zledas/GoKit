@@ -24,7 +24,7 @@ public sealed class SizeDeltaTweenProperty : AbstractTweenProperty
 	public override void prepareForUse()
 	{
 		_target = _ownerTween.target as RectTransform;
-		if (_ownerTween.target == null)
+		if (_target == null)
 		{
 			return;
 		}

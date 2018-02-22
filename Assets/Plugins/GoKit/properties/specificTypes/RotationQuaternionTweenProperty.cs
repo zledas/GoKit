@@ -37,7 +37,7 @@ public sealed class RotationQuaternionTweenProperty : AbstractQuaternionTweenPro
 	public override void prepareForUse()
 	{
 		_target = _ownerTween.target as Transform;
-		if (_ownerTween.target == null)
+		if (_target == null)
 		{
 			return;
 		}
