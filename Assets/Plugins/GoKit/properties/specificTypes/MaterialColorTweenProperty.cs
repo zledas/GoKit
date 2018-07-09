@@ -35,6 +35,15 @@ public class MaterialColorTweenProperty : AbstractMaterialColorTweenProperty
 
 	public override void prepareForUse()
 	{
+		// This might seem to be overkill, but on the case of Transforms that
+		// have been destroyed, target == null will return false, whereas
+		// target.Equals(null) will return true.  Otherwise we don't really
+		// get the benefits of the nanny.
+		if (_target == null || _target.Equals(null))
+		{
+			return;
+		}
+
 		_endValue = _originalEndValue;
 		
 		// if this is a from tween we need to swap the start and end values

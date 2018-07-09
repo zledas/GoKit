@@ -32,7 +32,11 @@ public sealed class Vector3PathTweenProperty : AbstractTweenProperty, IGenericPr
 	
 	public override void prepareForUse()
 	{
-		if (_ownerTween.target == null)
+		// This might seem to be overkill, but on the case of Transforms that
+		// have been destroyed, target == null will return false, whereas
+		// target.Equals(null) will return true.  Otherwise we don't really
+		// get the benefits of the nanny.
+		if (_ownerTween.target == null || _ownerTween.target.Equals(null))
 		{
 			return;
 		}

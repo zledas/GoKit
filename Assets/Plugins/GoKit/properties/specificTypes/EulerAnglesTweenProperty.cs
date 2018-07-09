@@ -41,7 +41,11 @@ public sealed class EulerAnglesTweenProperty : AbstractVector3TweenProperty
 	public override void prepareForUse()
 	{
 		_target = _ownerTween.target as Transform;
-		if (_target == null)
+		// This might seem to be overkill, but on the case of Transforms that
+		// have been destroyed, target == null will return false, whereas
+		// target.Equals(null) will return true.  Otherwise we don't really
+		// get the benefits of the nanny.
+		if (_target == null || _target.Equals(null))
 		{
 			return;
 		}
