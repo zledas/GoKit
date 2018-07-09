@@ -229,7 +229,7 @@ public class GoDummyPathEditor : Editor
 			return;
 		
 		// handle current selection and node addition via double click or ctrl click
-		if( Event.current.type == EventType.mouseDown )
+		if( Event.current.type == EventType.MouseDown )
 		{
 			var nearestIndex = getNearestNodeForMousePosition( Event.current.mousePosition );
 			_selectedNodeIndex = nearestIndex;
@@ -309,7 +309,11 @@ public class GoDummyPathEditor : Editor
 					                        Quaternion.identity,
 					                        handleSize,
 					                        new Vector3( 5, 0, 5 ),
+					                        #if UNITY_2018_1_OR_NEWER
+					                        Handles.SphereHandleCap );
+					                        #else
 					                        Handles.SphereCap );
+					                        #endif
 				}
 				
 
@@ -333,7 +337,11 @@ public class GoDummyPathEditor : Editor
 						var color = Color.red;
 						color.a = 0.3f;
 						Handles.color = color;
+						#if UNITY_2018_1_OR_NEWER
+						Handles.SphereHandleCap( 0, _target.nodes[i], Quaternion.identity, _snapDistance * 2, EventType.Repaint );
+						#else
 						Handles.SphereCap( 0, _target.nodes[i], Quaternion.identity, _snapDistance * 2 );
+						#endif
 						//Handles.DrawWireDisc( _target.nodes[i], Vector3.up, _snapDistance );
 						Handles.color = Color.white;
 					}
@@ -400,7 +408,11 @@ public class GoDummyPathEditor : Editor
 		// get the midpoint between the 2 points
 		var dir = Vector3.Lerp( point1, point2, lerpModifier );
 		var quat = Quaternion.LookRotation( point2 - point1 );
+		#if UNITY_2018_1_OR_NEWER
+		Handles.ArrowHandleCap( 0, dir, quat, 25, EventType.Repaint );
+		#else
 		Handles.ArrowCap( 0, dir, quat, 25 );
+		#endif
 		
 		Handles.color = Color.white;
 	}

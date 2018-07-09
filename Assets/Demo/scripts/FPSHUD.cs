@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-
+#pragma warning disable 0618
 [RequireComponent( typeof( GUIText ) )]
 public class FPSHUD : MonoBehaviour
 {
@@ -76,3 +76,4 @@ public class FPSHUD : MonoBehaviour
 	}
 
 }
+#pragma warning restore 0618
