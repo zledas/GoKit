@@ -82,11 +82,21 @@ public class GoSpline
 		if( Application.platform == RuntimePlatform.Android )
 		{
 			path = Path.Combine( "jar:file://" + Application.dataPath + "!/assets/", pathAssetName );
-		
+
+			#if UNITY_2019_1_OR_NEWER
+			using (var loadAsset = new UnityEngine.Networking.UnityWebRequest(path)) {
+				loadAsset.downloadHandler = new UnityEngine.Networking.DownloadHandlerBuffer();
+				loadAsset.SendWebRequest();
+				while( !loadAsset.isDone ) { } // maybe make a safety check here
+			
+				return bytesToVector3List(loadAsset.downloadHandler.data);
+			}
+			#else
 			WWW loadAsset = new WWW( path );
 			while( !loadAsset.isDone ) { } // maybe make a safety check here
 			
 			return bytesToVector3List( loadAsset.bytes );
+			#endif
 		}
 		else if( Application.platform == RuntimePlatform.IPhonePlayer )
 		{
