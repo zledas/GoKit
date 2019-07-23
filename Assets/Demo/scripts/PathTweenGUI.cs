@@ -32,7 +32,7 @@ public class PathTweenGUI : BaseDemoGUI
 		
 		// or the target can be set to look at another transform
 		_tween = Go.to( cube, 4f, new GoTweenConfig()
-			.positionPath( path, true, GoLookAtType.TargetTransform, optionalLookTarget )
+			.positionPath( path, true, 0.2f, GoLookAtType.TargetTransform, optionalLookTarget )
 			.setIterations( -1, GoLoopType.PingPong ) );
 	}
 

@@ -20,15 +20,18 @@ public sealed class PositionPathTweenProperty : AbstractTweenProperty
 	private GoLookAtType _lookAtType = GoLookAtType.None;
 	private Transform _lookTarget;
 	private GoSmoothedQuaternion _smoothedRotation;
+    private float _rotationDuration;
 	
 
-	public PositionPathTweenProperty( GoSpline path, bool isRelative = false, bool useLocalPosition = false, GoLookAtType lookAtType = GoLookAtType.None, Transform lookTarget = null ) : base( isRelative )
+	public PositionPathTweenProperty( GoSpline path, bool isRelative = false, bool useLocalPosition = false, float rotationDuration = 0.2f, GoLookAtType lookAtType = GoLookAtType.None, Transform lookTarget = null ) : base( isRelative )
 	{
 		_path = path;
 		_useLocalPosition = useLocalPosition;
 		_lookAtType = lookAtType;
 		_lookTarget = lookTarget;
-	}
+        _rotationDuration = rotationDuration;
+
+    }
 	
 	
 	#region Object overrides
@@ -97,7 +100,7 @@ public sealed class PositionPathTweenProperty : AbstractTweenProperty
 		}
 		
 		// prep our smoothed rotation
-		_smoothedRotation = _target.rotation;
+		_smoothedRotation = new GoSmoothedQuaternion(_target.rotation, _rotationDuration);
 	}
 	
 
@@ -120,6 +123,11 @@ public sealed class PositionPathTweenProperty : AbstractTweenProperty
 				_target.rotation = _smoothedRotation.smoothValue;
 				//var lookAtNode = ( _ownerTween.isReversed || _ownerTween.isLoopoingBackOnPingPong ) ? _path.getPreviousNode() : _path.getNextNode();
 				//_target.LookAt( lookAtNode, Vector3.up );
+                if (totalElapsedTime > _smoothedRotation.duration && _smoothedRotation.duration != 0.2f)
+                {
+                    //default value after initial rotation
+                    _smoothedRotation.duration = 0.2f;
+                }
 				break;
 			}
 			case GoLookAtType.TargetTransform:

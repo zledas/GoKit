@@ -57,9 +57,9 @@ public class GoTweenConfig
 	/// <summary>
 	/// position path tween
 	/// </summary>
-	public GoTweenConfig positionPath( GoSpline path, bool isRelative = false, GoLookAtType lookAtType = GoLookAtType.None, Transform lookTarget = null )
+	public GoTweenConfig positionPath( GoSpline path, bool isRelative = false, float rotationDuration = 0.2f, GoLookAtType lookAtType = GoLookAtType.None, Transform lookTarget = null )
 	{
-		var prop = new PositionPathTweenProperty( path, isRelative, false, lookAtType, lookTarget );
+		var prop = new PositionPathTweenProperty( path, isRelative, false, rotationDuration, lookAtType, lookTarget );
 		_tweenProperties.Add( prop );
 
 		return this;

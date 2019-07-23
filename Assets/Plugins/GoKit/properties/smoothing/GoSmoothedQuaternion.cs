@@ -21,9 +21,9 @@ public struct GoSmoothedQuaternion
 	private Quaternion _target;
 	private Quaternion _start;
 	private float _startTime;
-	
-	
-	public GoSmoothedQuaternion( Quaternion quat )
+
+
+    public GoSmoothedQuaternion(Quaternion quat, float duration = 0.2f)
 	{
 		_currentValue = quat;
 		_start = quat;		
@@ -31,7 +31,7 @@ public struct GoSmoothedQuaternion
 		_startTime = Time.time;
 		
 		// set sensible defaults
-		duration = 0.2f;
+		this.duration = duration;
 		smoothingType = GoSmoothingType.Lerp;
 	}
 	

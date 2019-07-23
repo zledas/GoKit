@@ -31,7 +31,7 @@ public class StressTestGUI : MonoBehaviour
 		for( i = 0; i < cubes.Length; i++ )
 		{
 			var cube = GameObject.CreatePrimitive( PrimitiveType.Cube );
-			Destroy( cube.GetComponent<BoxCollider>() );
+			//Destroy( cube.GetComponent<BoxCollider>() );
 			cube.transform.position = new Vector3( i * 0.1f - 10, cube.transform.position.y, i % 10 );
 			cubes[i] = cube;
 			origPos[i] = cube.transform.position;
