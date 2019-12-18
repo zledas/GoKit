@@ -1,3 +1,5 @@
+#if !UNITY_2019_3_OR_NEWER
+
 using UnityEngine;
 using System.Collections;
 
@@ -77,3 +79,4 @@ public class FPSHUD : MonoBehaviour
 
 }
 #pragma warning restore 0618
+#endif
